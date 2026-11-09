@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Sparziel App-Symbol">
+  <rect width="512" height="512" rx="112" fill="#24704a"/>
+  <circle cx="256" cy="256" r="146" fill="#f4f4f0"/>
+  <path
+    d="M320 169c-18-16-41-24-68-24-50 0-88 32-99 78h-27v31h23v14h-23v31h28c12 43 49 72 97 72 28 0 54-9 73-28l-25-38c-12 12-28 19-45 19-24 0-43-9-54-25h78v-31h-90c-1-5-1-9-1-14h91v-31h-80c10-20 30-31 57-31 17 0 32 6 43 16l22-39Z"
+    fill="#24704a"
+  />
+</svg>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f4f0" />
+    <meta name="description" content="Minimalistischer Spar-Tracker für mein PC-Setup." />
+
+    <title>Setup-Sparziel</title>
+
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Mein Sparplan</p>
+          <h1>PC-Setup</h1>
+        </div>
+        <button class="text-button" id="installButton" type="button" hidden>
+          App installieren
+        </button>
+      </header>
+
+      <main>
+        <section class="summary-card" aria-labelledby="summaryTitle">
+          <div class="summary-heading">
+            <div>
+              <p class="label" id="summaryTitle">Bereits gespart</p>
+              <p class="saved-value" id="savedValue">0,00&nbsp;€</p>
+            </div>
+            <div class="goal-block">
+              <p class="label">Gesamtziel</p>
+              <p class="goal-value" id="goalValue">0,00&nbsp;€</p>
+            </div>
+          </div>
+
+          <div
+            class="progress-track progress-track--large"
+            role="progressbar"
+            aria-label="Gesamter Sparfortschritt"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            id="overallProgress"
+          >
+            <span class="progress-fill" id="overallProgressFill"></span>
+          </div>
+
+          <div class="summary-meta">
+            <span id="percentValue">0 %</span>
+            <span id="remainingValue">Noch 0,00&nbsp;€</span>
+          </div>
+        </section>
+
+        <section class="entry-card" aria-labelledby="entryTitle">
+          <div>
+            <p class="label" id="entryTitle">Sparbetrag ändern</p>
+            <p class="muted">Trage ein, was du neu gespart oder ausgegeben hast.</p>
+          </div>
+
+          <div class="amount-row">
+            <label class="amount-input">
+              <span class="sr-only">Betrag in Euro</span>
+              <input
+                id="amountInput"
+                type="number"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+                placeholder="0,00"
+                autocomplete="off"
+              />
+              <span>€</span>
+            </label>
+            <button class="primary-button" id="addButton" type="button">Hinzufügen</button>
+          </div>
+
+          <div class="entry-actions">
+            <button class="secondary-button" id="subtractButton" type="button">Abziehen</button>
+            <button class="secondary-button" id="setButton" type="button">Gesamtbetrag setzen</button>
+          </div>
+          <p class="form-message" id="formMessage" aria-live="polite"></p>
+        </section>
+
+        <section class="targets-section" aria-labelledby="targetsTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Einzelne Ziele</p>
+              <h2 id="targetsTitle">Dein Setup</h2>
+            </div>
+            <button class="text-button" id="editPricesButton" type="button">Preise ändern</button>
+          </div>
+
+          <div class="target-list" id="targetList"></div>
+        </section>
+
+        <aside class="install-hint" id="iosInstallHint" hidden>
+          <strong>Als App verwenden</strong>
+          <span>In Safari auf „Teilen“ und danach „Zum Home-Bildschirm“ tippen.</span>
+        </aside>
+      </main>
+
+      <footer>
+        <span>Deine Daten bleiben nur auf diesem Gerät.</span>
+        <button class="danger-link" id="resetButton" type="button">Zurücksetzen</button>
+      </footer>
+    </div>
+
+    <dialog id="pricesDialog" aria-labelledby="pricesDialogTitle">
+      <form method="dialog" id="pricesForm">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">Einstellungen</p>
+            <h2 id="pricesDialogTitle">Preise ändern</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Dialog schließen" type="submit">×</button>
+        </div>
+
+        <div class="price-fields" id="priceFields"></div>
+
+        <div class="dialog-actions">
+          <button class="secondary-button" value="cancel" type="submit">Abbrechen</button>
+          <button class="primary-button" id="savePricesButton" value="default" type="submit">
+            Speichern
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <template id="targetTemplate">
+      <article class="target-card">
+        <div class="target-copy">
+          <div>
+            <h3 class="target-name"></h3>
+            <p class="target-note muted"></p>
+          </div>
+          <strong class="target-price"></strong>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <span class="progress-fill"></span>
+        </div>
+        <div class="target-meta">
+          <span class="target-funded"></span>
+          <span class="target-percent"></span>
+        </div>
+      </article>
+    </template>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
